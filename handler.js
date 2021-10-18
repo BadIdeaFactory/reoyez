@@ -11,7 +11,9 @@ const baseURL = "https://api.oyez.org/podcasts/oral-arguments/";
 
 const previousTerms = 5;
 const currentTerm = new Date().getFullYear();
-const terms = [...Array(previousTerms).keys()].map((i) => currentTerm - i).sort();
+const terms = [...Array(previousTerms).keys()]
+  .map((i) => currentTerm - i)
+  .sort();
 
 const header = fs.readFileSync("./header.xml", "utf8");
 
@@ -19,9 +21,9 @@ async function fetchTerm(term) {
   const response = await fetch(`${baseURL}${term}`);
   const text = await response.text();
   const items = [
-    ...await new DOMParser()
+    ...(await new DOMParser()
       .parseFromString(text, "text/xml")
-      .querySelectorAll("item"),
+      .querySelectorAll("item")),
   ];
   return items;
 }
@@ -36,8 +38,7 @@ module.exports.feed = async (event) => {
       "Content-Type": "application/xml",
     },
     body: `${header}
-      ${items.map((item) => `<item>${item.innerHTML}</item>`)}
-    </rss>
-    `,
+      ${items.map((item) => `<item>${item.innerHTML}</item>`).join("\n")}
+    </rss>\n`,
   };
 };
