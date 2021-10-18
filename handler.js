@@ -29,6 +29,10 @@ async function fetchTerm(term) {
   return items;
 }
 
+function removeiTunesOrder(item) {
+  return item.replace(/<itunes:order[^>]*>[0-9]+<\/itunes:order>/g, "");
+}
+
 module.exports.feed = async (event) => {
   const itemsByTerm = await Promise.all(terms.map(fetchTerm));
   const items = itemsByTerm.flat();
@@ -39,7 +43,9 @@ module.exports.feed = async (event) => {
       "Content-Type": "application/rss+xml",
     },
     body: `${header}
-      ${items.map((item) => `<item>${item.innerHTML}</item>`).join("\n")}
+      ${items
+        .map((item) => `<item>${removeiTunesOrder(item.innerHTML)}</item>`)
+        .join("\n")}
     ${footer}`,
   };
 };
