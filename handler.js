@@ -16,6 +16,7 @@ const terms = [...Array(previousTerms).keys()]
   .sort();
 
 const header = fs.readFileSync("./header.xml", "utf8");
+const footer = fs.readFileSync("./footer.xml", "utf8");
 
 async function fetchTerm(term) {
   const response = await fetch(`${baseURL}${term}`);
@@ -39,6 +40,6 @@ module.exports.feed = async (event) => {
     },
     body: `${header}
       ${items.map((item) => `<item>${item.innerHTML}</item>`).join("\n")}
-    </rss>\n`,
+    ${footer}`,
   };
 };
