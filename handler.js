@@ -9,9 +9,9 @@ const DOMParser = new JSDOM().window.DOMParser;
 
 const baseURL = "https://api.oyez.org/podcasts/oral-arguments/";
 
-const startTerm = 2020;
+const previousTerms = 5;
 const currentTerm = new Date().getFullYear();
-const terms = [...Array(currentTerm-startTerm+1).keys()].map((i) => startTerm + i);
+const terms = [...Array(previousTerms).keys()].map((i) => currentTerm - i).sort();
 
 const header = fs.readFileSync("./header.xml", "utf8");
 
