@@ -1,0 +1,37 @@
+service: reoyez
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  lambdaHashingVersion: '20201221'
+
+functions:
+  feed:
+    handler: handler.feed
+    events:
+      - httpApi:
+          path: /
+          method: get
+
+resources:
+  Resources:
+    CloudFrontDistribution:
+      Type: AWS::CloudFront::Distribution
+      Properties:
+        DistributionConfig:
+          Comment: reOyez
+          DefaultCacheBehavior:
+            TargetOriginId: reOyezOrigin
+            ViewerProtocolPolicy: 'redirect-to-https'
+            DefaultTTL: 30
+            ForwardedValues:
+              QueryString: false
+          Enabled: true
+          Origins:
+            - Id: reOyezOrigin
+              DomainName: reoyez.execute-api.us-east-1.amazonaws.com
+              CustomOriginConfig:
+                HTTPPort: 80
+                HTTPSPort: 443
+                OriginProtocolPolicy: https-only
