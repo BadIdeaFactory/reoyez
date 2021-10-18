@@ -1,11 +1,17 @@
 # reOyez
 
+## Setup
+
+```bash
+npm i
+```
+
 ## Usage
 
 ### Deployment
 
-```
-$ serverless deploy
+```bash
+serverless deploy
 ```
 
 ### Invocation
