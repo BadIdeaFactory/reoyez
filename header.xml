@@ -4,16 +4,13 @@
         <link>https://api.oyez.org/</link>
 
         <language>en</language>
-        <itunes:subtitle>Supreme Court Arguments, but on Spotify. </itunes:subtitle>
+        <itunes:subtitle>Supreme Court Arguments, but on Spotify.</itunes:subtitle>
         <itunes:summary>Oral arguments before the Supreme Court of the United States, originally presented by Oyez, a multimedia judicial archive at the IllinoisTech Chicago-Kent College of Law, and re-published to Spotify by Bad Idea Factory (https://biffud.com/) under the terms of the Oyez Creative Commons license, because Apple Podcasts is unusable since iOS 13 came out. &#xD;
         </itunes:summary>
 
         <itunes:image href="https://cl.ly/756543a69a46/Screen%252520Shot%2525202019-11-26%252520at%25252010.32.04%252520AM.png"/>
         <itunes:author>Bad Idea Factory </itunes:author>
 
-        <atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="self" type="application/rss+xml" href="http://feeds.feedburner.com/UsSupremeCourtCurrentTermArguments"/>
-        <feedburner:info xmlns:feedburner="http://rssnamespace.org/feedburner/ext/1.0" uri="ussupremecourtcurrenttermarguments"/>
-        <atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="hub" href="http://pubsubhubbub.appspot.com/"/>
         <media:copyright>All content on oyez.org and other sites and projects maintained by Oyez is released under the Creative Commons Attribution-NonCommercial 4.0 International License.</media:copyright>
         <media:thumbnail url="https://cl.ly/756543a69a46/Screen%252520Shot%2525202019-11-26%252520at%25252010.32.04%252520AM.png"/>
         <media:keywords>supreme,court</media:keywords>
@@ -24,11 +21,11 @@
         </itunes:owner>
         <itunes:explicit>no</itunes:explicit>
         <itunes:keywords>supreme,court</itunes:keywords>
-        <itunes:category text="Government &amp; Organizations">
-            <itunes:category text="National"/>
+        <itunes:category text="Government">
         </itunes:category>
         <image>
-            <link>biffud.com </link>
+            <title>reOyez</title>
+            <link>https://biffud.com</link>
             <url>https://cl.ly/756543a69a46/Screen%252520Shot%2525202019-11-26%252520at%25252010.32.04%252520AM.png</url>
         </image>
         <!-- feed items automatically inserted below this line -->
