@@ -37,6 +37,7 @@ module.exports.feed = async (event) => {
     },
     body: `${header}
       ${items.map((item) => `<item>${item.innerHTML}</item>`)}
-    </rss>`,
+    </rss>
+    `,
   };
 };
