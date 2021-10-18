@@ -30,7 +30,13 @@ resources:
           Enabled: true
           Origins:
             - Id: reOyezOrigin
-              DomainName: reoyez.execute-api.us-east-1.amazonaws.com
+              DomainName:
+                Fn::Join:
+                  - ''
+                  - - Ref: HttpApi
+                    - '.execute-api.'
+                    - Ref: AWS::Region
+                    - '.amazonaws.com'
               CustomOriginConfig:
                 HTTPPort: 80
                 HTTPSPort: 443
