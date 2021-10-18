@@ -1,7 +1,10 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:media="http://search.yahoo.com/mrss/" version="2.0" xml:base="https://api.oyez.org/">
     <channel>
         <title>reOyez: U.S. Supreme Court Arguments for Spotify</title>
-        <link>https://api.oyez.org/</link>
+        <description>Oral arguments before the Supreme Court of the United States, originally presented by Oyez, a multimedia judicial archive at the IllinoisTech Chicago-Kent College of Law, and re-published to Spotify by Bad Idea Factory (https://biffud.com/) under the terms of the Oyez Creative Commons license, because Apple Podcasts is unusable since iOS 13 came out. &#xD;</description>
+        <link>https://biffud.com</link>
+
+        <atom:link href="https://d1eyn7xf5cq8d5.cloudfront.net/" rel="self" type="application/rss+xml" />
 
         <language>en</language>
         <itunes:subtitle>Supreme Court Arguments, but on Spotify.</itunes:subtitle>
@@ -9,7 +12,7 @@
         </itunes:summary>
 
         <itunes:image href="https://cl.ly/756543a69a46/Screen%252520Shot%2525202019-11-26%252520at%25252010.32.04%252520AM.png"/>
-        <itunes:author>Bad Idea Factory </itunes:author>
+        <itunes:author>Bad Idea Factory</itunes:author>
 
         <media:copyright>All content on oyez.org and other sites and projects maintained by Oyez is released under the Creative Commons Attribution-NonCommercial 4.0 International License.</media:copyright>
         <media:thumbnail url="https://cl.ly/756543a69a46/Screen%252520Shot%2525202019-11-26%252520at%25252010.32.04%252520AM.png"/>
@@ -24,7 +27,7 @@
         <itunes:category text="Government">
         </itunes:category>
         <image>
-            <title>reOyez</title>
+            <title>reOyez: U.S. Supreme Court Arguments for Spotify</title>
             <link>https://biffud.com</link>
             <url>https://cl.ly/756543a69a46/Screen%252520Shot%2525202019-11-26%252520at%25252010.32.04%252520AM.png</url>
         </image>

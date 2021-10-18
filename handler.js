@@ -36,7 +36,7 @@ module.exports.feed = async (event) => {
   return {
     statusCode: 200,
     headers: {
-      "Content-Type": "application/xml",
+      "Content-Type": "application/rss+xml",
     },
     body: `${header}
       ${items.map((item) => `<item>${item.innerHTML}</item>`).join("\n")}
