@@ -1,5 +1,3 @@
-"use strict";
-
 const fs = require("fs");
 const fetch = require("isomorphic-unfetch");
 const jsdom = require("jsdom");
@@ -9,11 +7,11 @@ const DOMParser = new JSDOM().window.DOMParser;
 
 const baseURL = "https://api.oyez.org/podcasts/oral-arguments/";
 
-const previousTerms = 5;
+const startTerm = 1955;
 const currentTerm = new Date().getFullYear();
-const terms = [...Array(previousTerms).keys()]
-  .map((i) => currentTerm - i)
-  .sort();
+const terms = [...Array(currentTerm-startTerm+1).keys()]
+  .map((i) => startTerm + i)
+  .reverse();
 
 const header = fs.readFileSync("./header.xml", "utf8");
 const footer = fs.readFileSync("./footer.xml", "utf8");
@@ -33,19 +31,28 @@ function removeiTunesOrder(item) {
   return item.replace(/<itunes:order[^>]*>[0-9]+<\/itunes:order>/g, "");
 }
 
-module.exports.feed = async (event) => {
-  const itemsByTerm = await Promise.all(terms.map(fetchTerm));
-  const items = itemsByTerm.flat();
+async function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
 
-  return {
-    statusCode: 200,
-    headers: {
-      "Content-Type": "application/rss+xml",
-    },
-    body: `${header}
-      ${items
+async function assembleFeed(){
+  let allItems = [];
+  for (let term of terms) {
+    console.log(`Fetching ${term}`);
+    const items = await fetchTerm(term);
+    allItems = allItems.concat(items);
+    await sleep(2000);
+  }
+
+  return `${header}
+      ${allItems
         .map((item) => `<item>${removeiTunesOrder(item.innerHTML)}</item>`)
-        .join("\n")}
-    ${footer}`,
-  };
-};
+        .join("\r\n")}
+    ${footer}`;
+}
+
+async function writeFeed() {
+  fs.writeFileSync("./dist/feed.xml", await assembleFeed());
+}
+
+writeFeed();
