@@ -5,7 +5,4 @@ jspm_packages
 # Serverless directories
 .serverless
 
-dist/
-!dist/cover.png
-
 .DS_Store
