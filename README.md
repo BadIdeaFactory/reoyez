@@ -9,5 +9,5 @@ npm i
 ## Usage
 
 ```bash
-mkdir ./dist && node ./index.js
+node ./index.js
 ```

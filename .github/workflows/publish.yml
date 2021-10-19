@@ -23,9 +23,6 @@ jobs:
       - name: Install Project Dependencies
         run: npm ci
 
-      - name: Make folder dist
-        run: mkdir ./dist
-
       - name: Build
         run: node ./index.js
 
