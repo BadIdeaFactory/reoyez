@@ -9,7 +9,7 @@ const baseURL = "https://api.oyez.org/podcasts/oral-arguments/";
 
 const startTerm = 1955;
 const currentTerm = new Date().getFullYear();
-const terms = [...Array(currentTerm-startTerm+1).keys()]
+const terms = [...Array(currentTerm - startTerm + 1).keys()]
   .map((i) => startTerm + i)
   .reverse();
 
@@ -27,15 +27,30 @@ async function fetchTerm(term) {
   return items;
 }
 
-function removeiTunesOrder(item) {
-  return item.replace(/<itunes:order[^>]*>[0-9]+<\/itunes:order>/g, "");
+function replaceGUID(item) {
+  const url = item.match(/enclosure url="([^"]*)"/)
+
+  if (url) {
+    return item.replace(
+      /<guid[^>]*>[0-9]+<\/guid>/g,
+      `<guid isPermaLink="false">${url[1]}</guid>`
+    );
+  }
+  return item;
+}
+
+function replaceiTunesOrder(item, i) {
+  return item.replace(
+    /<itunes:order[^>]*>[0-9]+<\/itunes:order>/g,
+    `<itunes:order>${i + 1}<\/itunes:order>`
+  );
 }
 
 async function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-async function assembleFeed(){
+async function assembleFeed() {
   let allItems = [];
   for (let term of terms) {
     console.log(`Fetching ${term}`);
@@ -46,7 +61,10 @@ async function assembleFeed(){
 
   return `${header}
       ${allItems
-        .map((item) => `<item>${removeiTunesOrder(item.innerHTML)}</item>`)
+        .map(
+          (item, i) =>
+            `<item>${replaceiTunesOrder(replaceGUID(item.innerHTML), i)}</item>`
+        )
         .join("\r\n")}
     ${footer}`;
 }
