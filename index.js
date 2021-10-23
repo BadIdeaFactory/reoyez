@@ -32,7 +32,7 @@ function replaceGUID(item) {
 
   if (url) {
     return item.replace(
-      /<guid[^>]*>[0-9]+<\/guid>/g,
+      /<guid[^>]*>[^<]*<\/guid>/g,
       `<guid isPermaLink="false">${url[1]}</guid>`
     );
   }
