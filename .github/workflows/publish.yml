@@ -31,3 +31,5 @@ jobs:
         with:
           branch: gh-pages
           folder: dist
+          git-config-name: reoyez
+          git-config-email: chris@biffud.com
